@@ -1,1 +1,18 @@
 Briefly explain the vulnerability and why the secure version prevents the vulnerability.
+
+The vulnerability we are facing is improper session management. So during the session, when user
+logs in and their session details are not properly managed, attacks can exploit this weak session management.
+
+In Secure.js we have the same issue. The cookie details(which is used to store the user session details)
+of the currently logged in user has several vulnerabilities. 
+
+Attackers can easily hijack this session, for example attackers can get the cookie(if it is not properly enforced through some mechanisms)
+and pose as authorized user. This is happening because of weak CORS policy (CORS attack).
+  We can prevent this attack by having strong CORS policies such as allowing the session to continue only from the same origin containing same ip address
+
+Another form of session hijacking that we saw is the CSFR attack, where the attackers make the users
+do unwanted activities. The execution is through making the users click some links, or images while still being authenticated.
+This triggers some malicious activity and then do session hijacking and exploit the user's session for their benefit.
+  This can be prevented by validating Referer headers and having proper CORS policy.
+
+Spoofing violates Confidentiality(User details are confidential) and Integrity(unauthroized changes)

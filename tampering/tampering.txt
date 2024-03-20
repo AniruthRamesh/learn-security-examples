@@ -1,0 +1,19 @@
+
+The reason why there is a vulnerability is that, we are not sanitizing the input and we are directly using the input.
+since we use the input directly, it can also be a JS script
+
+if the JS script is executed, the attacker can change the client code
+and reroute to different links -> leaks sensitive info
+
+When an unintented input is given to the system, the system did not reject the request. If any exe
+files or JS scripts are given in an username input field, it should be rejected or those should be
+converted as strings. We can prevent this by sanitizing inputs and having proper checks to make
+sure we are getting what we expect to recieve.
+
+Tampering violates all the three principles in a way that
+  1. Confidentiality - leaks all the user information (Direct effect)
+  2. Integrity - Unauthroized behavior
+  3. Availability - the expected results might not be available to the user. They may see
+  something unrelated instead of how our system should behave. (indirect effetc)
+
+
