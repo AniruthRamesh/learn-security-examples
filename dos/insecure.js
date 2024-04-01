@@ -6,7 +6,7 @@ const port = 3000;
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/infodisclosure', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
+  .then(() => console.log('Connected to MongoDBsss'))
   .catch(err => console.error('Error connecting to MongoDB:', err));
 
 // Define a Mongoose schema
@@ -20,8 +20,10 @@ const User = mongoose.model('User', userSchema);
 
 // Route to authenticate user (VULNERABLE TO NOSQL INJECTION)
 app.get('/userinfo', async (req, res) => {
+  console.log("hi")
+  
   const { id } = req.query;
-
+  console.log(id)
   // Vulnerable code: Directly using user-provided values in the query
   const user = await User.findOne({ _id: id }).exec();
 
