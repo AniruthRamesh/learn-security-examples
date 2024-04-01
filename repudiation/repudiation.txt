@@ -1,0 +1,7 @@
+- Briefly explain the vulnerability and why the secure version is better at preventing repudiation than the insecure version.
+- What additional security mechanisms can you incorporate to prevent such attacks?
+
+
+For the first server (repudiation/insecure.js), the ability for users to deny their actions stems from the lack of logging or any mechanism to record who performed which actions and when. Without an audit trail, there is no way to prove that a specific user sent a message, making it possible for users to repudiate their actions.
+
+In the second server (repudiation/secure.js), the implementation of a logging mechanism ensures that user actions can be tracked. This is achieved through the middleware that logs every request to the server, including the IP address, the request method, the URL accessed, and the timestamp of the request. Additionally, when a message is sent, the server logs the action along with the username and the message content, and similar logging occurs when messages are retrieved. This creates an audit trail that can be used to verify user actions and counteract repudiation claims, thus significantly enhancing the server's security posture regarding non-repudiation.
